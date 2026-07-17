@@ -11,6 +11,28 @@ https://build-system.fman.io/qt-designer-download
 
 Thank you for trusting and using my application. I hope you find it useful.
 
+## Screenshots
+
+<p align="center">
+  <img src="screenshots/image1.png" width="800">
+</p>
+
+<p align="center">
+  <img src="screenshots/image2.png" width="800">
+</p>
+
+<p align="center">
+  <img src="screenshots/image3.png" width="800">
+</p>
+
+<p align="center">
+  <img src="screenshots/image4.png" width="800">
+</p>
+
+<p align="center">
+  <img src="screenshots/image5.png" width="800">
+</p>
+
 ### Note
 
 I may provide the source code in the future.
