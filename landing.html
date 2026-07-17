@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TrueDrivers - Device Manager & Driver Toolkit</title>
+
+<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css'>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+:root{
+    --bg:#f8fafc;
+    --card:#ffffff;
+    --text:#0f172a;
+    --muted:#64748b;
+    --border:#e2e8f0;
+    --primary:#2563eb;
+    --primary-hover:#1d4ed8;
+    --shadow:0 20px 50px rgba(15,23,42,.08);
+}
+
+body{
+    font-family:Inter,sans-serif;
+    background:linear-gradient(180deg,#f8fafc 0%,#eef4ff 100%);
+    color:var(--text);
+    min-height:100vh;
+}
+
+.container{
+    width:min(1200px,92%);
+    margin:auto;
+}
+
+.hero{
+    padding:100px 0 70px;
+}
+
+.badge{
+    display:inline-flex;
+    align-items:center;
+    gap:10px;
+    padding:10px 18px;
+    border:1px solid rgba(37,99,235,.15);
+    background:rgba(37,99,235,.08);
+    border-radius:999px;
+    color:var(--primary);
+    font-size:.9rem;
+    font-weight:600;
+}
+
+.hero-content{
+    display:grid;
+    grid-template-columns:1.1fr .9fr;
+    gap:70px;
+    align-items:center;
+    margin-top:30px;
+}
+
+.hero h1{
+    font-size:clamp(3rem,6vw,5.5rem);
+    line-height:1;
+    font-weight:800;
+    letter-spacing:-2px;
+    margin-bottom:24px;
+}
+
+.hero p{
+    font-size:1.15rem;
+    line-height:1.8;
+    color:var(--muted);
+    max-width:650px;
+}
+
+.actions{
+    margin-top:35px;
+    display:flex;
+    gap:16px;
+    flex-wrap:wrap;
+}
+
+.download-btn{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    padding:16px 30px;
+    background:var(--primary);
+    color:white;
+    text-decoration:none;
+    border-radius:14px;
+    font-weight:700;
+    transition:.2s;
+}
+
+.download-btn:hover{
+    background:var(--primary-hover);
+    transform:translateY(-2px);
+}
+
+.github-btn{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    padding:16px 30px;
+    background:white;
+    border:1px solid var(--border);
+    color:var(--text);
+    text-decoration:none;
+    border-radius:14px;
+    font-weight:600;
+}
+
+.preview{
+    background:var(--card);
+    border:1px solid var(--border);
+    border-radius:28px;
+    padding:26px;
+    box-shadow:var(--shadow);
+}
+
+.preview-header{
+    display:flex;
+    gap:8px;
+    margin-bottom:20px;
+}
+
+.dot{
+    width:12px;
+    height:12px;
+    border-radius:50%;
+    background:#e2e8f0;
+}
+
+.dashboard{
+    display:grid;
+    gap:16px;
+}
+
+.card{
+    background:#f8fafc;
+    border:1px solid var(--border);
+    border-radius:18px;
+    padding:18px;
+}
+
+.card-title{
+    font-size:.9rem;
+    color:var(--muted);
+    margin-bottom:10px;
+}
+
+.big{
+    font-size:2rem;
+    font-weight:800;
+}
+
+.grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:12px;
+}
+
+.mini{
+    background:white;
+    border:1px solid var(--border);
+    border-radius:14px;
+    padding:14px;
+}
+
+.features{
+    padding:60px 0 100px;
+}
+
+.section-title{
+    text-align:center;
+    font-size:2.4rem;
+    font-weight:800;
+    margin-bottom:15px;
+}
+
+.section-subtitle{
+    text-align:center;
+    color:var(--muted);
+    max-width:700px;
+    margin:0 auto 50px;
+    line-height:1.8;
+}
+
+.feature-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+    gap:22px;
+}
+
+.feature{
+    background:white;
+    border:1px solid var(--border);
+    border-radius:24px;
+    padding:28px;
+    transition:.2s;
+}
+
+.feature:hover{
+    transform:translateY(-4px);
+    box-shadow:var(--shadow);
+}
+
+.icon{
+    width:52px;
+    height:52px;
+    border-radius:14px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:#eff6ff;
+    font-size:1.4rem;
+    margin-bottom:18px;
+}
+
+.feature h3{
+    margin-bottom:12px;
+    font-size:1.1rem;
+}
+
+.feature p{
+    color:var(--muted);
+    line-height:1.7;
+}
+
+.footer{
+    padding:40px 0 60px;
+    text-align:center;
+    color:var(--muted);
+}
+
+.footer a{
+    color:var(--primary);
+    text-decoration:none;
+    font-weight:600;
+}
+
+@media(max-width:900px){
+    .hero-content{
+        grid-template-columns:1fr;
+    }
+
+    .grid{
+        grid-template-columns:1fr;
+    }
+}
+
+.screenshots{
+    max-width:1100px;
+    margin:80px auto 0;
+    display:flex;
+    flex-direction:column;
+    gap:30px;
+}
+
+.screenshots img{
+    width:100%;
+    display:block;
+    border-radius:24px;
+    border:1px solid var(--border);
+    box-shadow:var(--shadow);
+    transition:.25s;
+    background:white;
+}
+
+.screenshots img:hover{
+    transform:translateY(-4px);
+}
+</style>
+</head>
+<body>
+
+<section class="hero">
+    <div class="container">
+
+        <div class="badge">
+            Driver Diagnostics • Hardware Reporting • IT Toolkit
+        </div>
+
+        <div class="hero-content">
+
+            <div>
+
+                <h1>
+                    Manage Drivers<br>
+                    Like a Professional
+                </h1>
+
+                <p>
+                    TrueDrivers helps technicians and IT teams identify driver problems, analyze hardware configurations, track system changes, and create professional service reports in seconds. Designed for repair shops, refurbishers, and enterprise environments where speed, accuracy, and reliability matter.
+                </p>
+
+                <div class="actions">
+                    <a href="TrueDriversPortable.7z" class="download-btn" download>
+                        Portable Version
+                    </a>
+
+                    <a href="https://github.com/rmrf-dotnet" class="github-btn">
+                        View GitHub
+                    </a>
+                </div>
+
+            </div>
+
+            <div class="preview">
+
+                <div class="preview-header">
+                    <div class="dot"></div>
+                    <div class="dot"></div>
+                    <div class="dot"></div>
+                </div>
+
+                <div class="dashboard">
+
+                    <div class="card">
+                        <div class="card-title">Available Drivers</div>
+                        <div class="big">172</div>
+                    </div>
+
+                    <div class="grid">
+
+                        <div class="mini">
+                            <div class="card-title">Ok</div>
+                            <strong>163</strong>
+                        </div>
+
+                        <div class="mini">
+                            <div class="card-title">Disabled</div>
+                            <strong>1</strong>
+                        </div>
+
+                        <div class="mini">
+                            <div class="card-title">Missing</div>
+                            <strong>8</strong>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+</section>
+
+<section class="features">
+    
+
+    <div class="container">
+        <div class="screenshots">
+            <img src="screenshots/image1.png" alt="TrueDrivers Screenshot 1">
+            <img src="screenshots/image2.png" alt="TrueDrivers Screenshot 2">
+            <img src="screenshots/image3.png" alt="TrueDrivers Screenshot 3">
+            <img src="screenshots/image4.png" alt="TrueDrivers Screenshot 4">
+            <img src="screenshots/image5.png" alt="TrueDrivers Screenshot 5">
+        </div>
+
+        <h2 class="section-title">
+            Everything Needed for Driver Diagnostics
+        </h2>
+
+        <p class="section-subtitle">
+            Designed for technicians who need fast access to hardware status,
+            clean reporting tools, and reliable diagnostic workflows.
+        </p>
+
+        <div class="feature-grid">
+
+            <div class="feature">
+                <div class="icon"><i class="fa-solid fa-laptop"></i></div>
+                <h3>WMI Hardware Scanning</h3>
+                <p>Collect detailed hardware and driver information directly from Windows systems.</p>
+            </div>
+
+            <div class="feature">
+                <div class="icon"><i class="fa-solid fa-chart-simple"></i></div>
+                <h3>Status Dashboard</h3>
+                <p>Instant overview of driver health, missing devices, and system status.</p>
+            </div>
+
+            <div class="feature">
+                <div class="icon"><i class="fa-solid fa-floppy-disk"></i></div>
+                <h3>Save & Load Sessions</h3>
+                <p>Store diagnostic scans and reopen them later for comparison and auditing.</p>
+            </div>
+
+            <div class="feature">
+                <div class="icon"><i class="fa-solid fa-file"></i></div>
+                <h3>CSV & LOG Export</h3>
+                <p>Create portable reports for customers, records, and internal workflows.</p>
+            </div>
+
+            <div class="feature">
+                <div class="icon"><i class="fa-solid fa-globe"></i></div>
+                <h3>HTML Reports</h3>
+                <p>Generate professional print-ready reports with a single click.</p>
+            </div>
+
+            <div class="feature">
+                <div class="icon"><i class="fa-solid fa-magnifying-glass"></i></div>
+                <h3>Trusted Driver Search</h3>
+                <p>Quick access to verified driver sources and update recommendations.</p>
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<footer class="footer">
+    <div class="container">
+        <p>TrueDrivers © 2026</p>
+        <p>
+            <a href="https://github.com/rmrf-dotnet">
+                github.com/rmrf-dotnet
+            </a>
+        </p>
+    </div>
+</footer>
+
+</body>
+</html>
